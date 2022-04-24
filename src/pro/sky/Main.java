@@ -63,24 +63,23 @@ public class Main {
 //Написанный код отрабатывает условия задачи и изменение значений переменных, выводит в консоль корректный результат
 //Нет вложенности в коде.
 
-        int age = 25;
-        double salary = 60_000;
+        int age = 31;
+        double salary = 85_000;
         double wantedSum = 330_000;
         double baseYearRate = 0.1;
         double creditingPeriod = 12;
-        double baseMonthRate = baseYearRate / creditingPeriod;
         double maxPaymentMonth = salary * 0.5;
-        double stdPaymentMonth = wantedSum * baseMonthRate / (1 - 1 / Math.pow(1 + baseMonthRate, 1 * 12));
-        String salaryResult = String.format("%.2f", salary);
-        String maxPaymentMonthResult = String.format("%.2f", maxPaymentMonth);
-        String stdPaymentMonthResult = String.format("%.2f", stdPaymentMonth);
 
 //        double monthlyPayment = loanAmount * monthlyInterestRate / (
 //                1-1 / Math.pow(1+ monthlyInterestRate,numberOfYears * 12));
-
+// check:
+        //«Максимальный платеж при ЗП 85000,00 равен 42500,00 рублей. Платеж по кредиту 29012,24 рублей. Одобрено.
+        //«Максимальный платеж при ЗП 85000,00 равен 42500,00 рублей. Платеж по кредиту 29009,12 рублей. Одобрено.
+        //«Максимальный платеж при ЗП 85000,00 равен 42500,00 рублей. Платеж по кредиту 29016,74 рублей. Одобрено.
+        //«Максимальный платеж при ЗП 85000,00 равен 42500,00 рублей. Платеж по кредиту 29001,50 рублей. Одобрено.
 
         if (salary > 80000) {
-            baseYearRate = baseYearRate + baseYearRate * 0.007;
+            baseYearRate = baseYearRate - baseYearRate * 0.007;
         }
 
         if (age < 23) {
@@ -88,6 +87,12 @@ public class Main {
         } else if (age < 30) {
             baseYearRate = baseYearRate + baseYearRate * 0.005;
         }
+
+        double baseMonthRate = baseYearRate / creditingPeriod;
+        double stdPaymentMonth = wantedSum * baseMonthRate / (1 - 1 / Math.pow(1 + baseMonthRate, 1 * 12));
+        String salaryResult = String.format("%.2f", salary);
+        String maxPaymentMonthResult = String.format("%.2f", maxPaymentMonth);
+        String stdPaymentMonthResult = String.format("%.2f", stdPaymentMonth);
 
         if (maxPaymentMonth > stdPaymentMonth) {
             String resultAnswer = "Одобрено";
