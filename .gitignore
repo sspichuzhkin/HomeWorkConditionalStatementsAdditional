@@ -1,1 +1,3 @@
-/HomeWorkConditionalStatementsAdditional.iml
+*.iml
+/out/
+/.idea/
